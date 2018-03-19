@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static '../static/sttyle.css' %}?v=22" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block head %}
+    <title>Login@Socio</title>
+    {% endblock %}
+</head>
+<body>
+
+   <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="{% url 'home:home' %}">Social Network</a>
+    </div>
+    {% if user.is_authenticated %}
+    <ul class="nav navbar-nav">
+        <li><a href="{% url 'home:home' %}" >Home</a></li>
+        <li><a href="{% url 'accounts:profile' %}" >Profile</a></li>
+        <li><a href="{% url 'accounts:edit_profile' %}" >Edit Profile</a></li>
+        <li><a href="{% url 'accounts:change_password' %}" >Change Password</a></li>
+
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="{% url 'accounts:logout' %}"><span class="glyphicon glyphicon-user"></span> Log Out</a></li>
+
+    </ul>
+      {% else %}
+        <ul class="nav navbar-nav">
+        <li>
+            <a href="{% url 'accounts:password_reset' %}">Reset Password</a>
+        </li>
+        </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'accounts:login' %}" >Log in</a></li>
+        <li><a href="{% url 'accounts:register' %}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+
+    </ul>
+      {% endif %}
+  </div>
+</nav>
+
+<br><br>
+{% block body %}
+    <h1>Base</h1>
+{% endblock %}
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+
+</script>
+</html>
